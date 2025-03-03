@@ -1,8 +1,10 @@
 package org.example.the_system_of_student_information.service.concrets;
 
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.example.the_system_of_student_information.entity.Student;
 import org.example.the_system_of_student_information.entity.User;
+import org.example.the_system_of_student_information.exception.StudentNotFoundException;
 import org.example.the_system_of_student_information.mapper.StudentMapper;
 import org.example.the_system_of_student_information.model.request.StudentRequest;
 import org.example.the_system_of_student_information.model.result.ResultPage;
@@ -21,9 +23,10 @@ public class StudentServiceImp implements StudentService {
     private final UserServiceImp userService;
 
     @Override
+    @SneakyThrows
     public StudentResponse getStudentById(int id) {
         Student student = studentRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Student not found"));
+                .orElseThrow(() -> new StudentNotFoundException("Student not found"));
         return StudentMapper.mapStudentToResponse(student);
     }
 

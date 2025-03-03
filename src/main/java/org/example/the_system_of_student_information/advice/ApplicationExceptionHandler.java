@@ -1,5 +1,6 @@
 package org.example.the_system_of_student_information.advice;
 
+import org.example.the_system_of_student_information.exception.StudentNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +20,15 @@ public class ApplicationExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach((error)->{
             errorMap.put(error.getField(),error.getDefaultMessage());
         });
+        return errorMap;
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(StudentNotFoundException.class)
+    public Map<String,String> handleException(StudentNotFoundException ex){
+        Map<String,String> errorMap = new HashMap<>();
+        errorMap.put("error",ex.getMessage());
+
         return errorMap;
     }
 
