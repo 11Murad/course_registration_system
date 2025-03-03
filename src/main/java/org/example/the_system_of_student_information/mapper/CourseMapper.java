@@ -2,7 +2,6 @@ package org.example.the_system_of_student_information.mapper;
 import org.example.the_system_of_student_information.entity.Course;
 import org.example.the_system_of_student_information.model.response.CourseResponse;
 import org.example.the_system_of_student_information.model.response.StudentResponseForCourse;
-import org.example.the_system_of_student_information.model.response.TeacherResponse;
 import org.example.the_system_of_student_information.model.response.TeacherResponseForCourse;
 
 import java.util.List;

@@ -32,7 +32,8 @@ public class TeacherServiceImp implements TeacherService {
         } else {
             teachers = teacherRepo.findAll(pageable);
         }
-        return new SuccessDataResult<>("successfully listed", new ResultPage<>(TeacherMapper.mapTeachersToResponses(teachers.getContent()),
+        return new SuccessDataResult<>("successfully listed",
+                new ResultPage<>(TeacherMapper.mapTeachersToResponses(teachers.getContent()),
                 page, size, teachers.getTotalPages()));
     }
 

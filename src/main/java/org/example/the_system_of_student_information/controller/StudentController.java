@@ -24,7 +24,6 @@ public class StudentController {
         return studentService.getStudentById(id);
     }
 
-
     @PostMapping
     public void save(@RequestBody StudentRequest student) {
     studentService.addStudent(student);

@@ -1,4 +1,5 @@
 package org.example.the_system_of_student_information.controller;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.the_system_of_student_information.model.request.TeacherRequest;
 import org.example.the_system_of_student_information.model.result.DataResult;
@@ -19,7 +20,7 @@ public class TeacherController {
                                                                   @RequestParam(defaultValue = "5") int size) {
         return teacherService.getAllTeachersByName(name,page,size);
     }
-
+    
 
     @GetMapping("{id}")
     public TeacherResponse getTeacherById(@PathVariable Integer id) {
@@ -28,13 +29,13 @@ public class TeacherController {
 
 
     @PostMapping
-    public void addTeacher(@RequestBody TeacherRequest teacher) {
+    public void addTeacher(@Valid @RequestBody TeacherRequest teacher) {
         teacherService.addTeacher(teacher);
     }
 
 
     @PutMapping("/{id}")
-    public void updateTeacher(@PathVariable int id, @RequestBody TeacherRequest teacherRequest) {
+    public void updateTeacher(@PathVariable int id,@Valid @RequestBody TeacherRequest teacherRequest) {
         teacherService.updateTeacher(id,teacherRequest);
     }
 }
