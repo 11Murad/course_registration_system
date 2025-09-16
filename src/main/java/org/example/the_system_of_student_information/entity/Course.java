@@ -18,10 +18,12 @@ public class Course {
     private Integer id;
     private String name;
 
+    @Builder.Default
     @ToString.Exclude
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Teacher> teachers = new HashSet<>();
 
+    @Builder.Default
     @ToString.Exclude
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Student> students = new HashSet<>();

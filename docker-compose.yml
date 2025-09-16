@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  postgres:
+    hostname: postgres-hostname
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: crs
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    networks:
+      - crs_network
+  crs:
+    image: crs:v5
+    ports:
+      - "8080:8080"
+    environment:
+      DB_CONNECTION_IP: postgres-hostname
+      DB_CONNECTION_PORT: 5432
+    networks:
+      - crs_network
+    depends_on:
+      - postgres
+
+networks:
+  crs_network:
+volumes:
+  db_data:
