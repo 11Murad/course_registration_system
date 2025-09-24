@@ -27,6 +27,7 @@ public class Student {
     private LocalDate updatedAt;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne

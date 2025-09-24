@@ -21,6 +21,11 @@ public class Course {
     @Builder.Default
     @ToString.Exclude
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "course_teachers",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
     private Set<Teacher> teachers = new HashSet<>();
 
     @Builder.Default

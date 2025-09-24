@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250924-03
+      author: ashrafov
+      changes:
+        - createTable:
+            tableName: teachers
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: salary
+                  type: numeric(19,2)
+              - column:
+                  name: user_id
+                  type: integer
+                  constraints:
+                   foreignKeyName: fk_teacher_user
+                   referencedTableName: users
+                   referencedColumnNames: id
+                   nullable: false
+

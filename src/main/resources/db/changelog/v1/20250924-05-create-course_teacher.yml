@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250924-05
+      author: ashrafov
+      changes:
+        - createTable:
+            tableName: course_teachers
+            columns:
+              - column:
+                  name: course_id
+                  type: integer
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_ct_course
+                    referencedTableName: courses
+                    referencedColumnNames: id
+              - column:
+                  name: teacher_id
+                  type: integer
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_ct_teacher
+                    referencedTableName: teachers
+                    referencedColumnNames: id
+        - addPrimaryKey:
+            tableName: course_teachers
+            columnNames: course_id, teacher_id
+            constraintName: pk_course_teacher

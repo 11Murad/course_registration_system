@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250924-04
+      author: ashrafov
+      changes:
+        - createTable:
+            tableName: students
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: scholarship_status
+                  type: boolean
+              - column:
+                  name: created_at
+                  type: date
+              - column:
+                  name: updated_at
+                  type: date
+              - column:
+                  name: user_id
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_student_user
+                    referencedTableName: users
+                    referencedColumnNames: id
+                    nullable: false
+              - column:
+                  name: course_id
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_student_course
+                    referencedTableName: courses
+                    referencedColumnNames: id

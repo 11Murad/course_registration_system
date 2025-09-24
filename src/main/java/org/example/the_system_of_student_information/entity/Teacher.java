@@ -24,6 +24,7 @@ public class Teacher {
     private Set<Course> courses = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
 }
