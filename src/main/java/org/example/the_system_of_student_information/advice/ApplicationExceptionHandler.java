@@ -25,9 +25,9 @@ public class ApplicationExceptionHandler {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(StudentNotFoundException.class)
-    public Map<String,String> handleException(StudentNotFoundException ex){
+    public Map<String,String> handleStudentNotFoundException(StudentNotFoundException ex){
         Map<String,String> errorMap = new HashMap<>();
-        errorMap.put("error",ex.getMessage());
+        errorMap.put("Error",ex.getMessage());
 
         return errorMap;
     }

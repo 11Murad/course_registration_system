@@ -4,10 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Integer> {
@@ -15,8 +13,9 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     @EntityGraph(attributePaths = {"teachers", "students"})
     Page<Course> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
-    @EntityGraph(attributePaths = {"teachers", "students"})
-    @Query("SELECT c FROM Course c")
-    Page<Course> findAllCourses(Pageable pageable);
+    Page<Course> findAllBy(Pageable pageable);
+
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH,value = "course-with-teachers-and-students")
+    Set<Course> getAllBy();
 
 }

@@ -32,7 +32,7 @@ public class CourseServiceImp implements CourseService {
         if (name != null) {
             courses = courseRepo.findByNameContainingIgnoreCase(name, pageable);
         } else {
-            courses = courseRepo.findAllCourses(pageable);
+            courses = courseRepo.findAllBy(pageable);
         }
         List<CourseResponse> responseCourse = CourseMapper.coursesToCourseResponses(courses.getContent()) ;
         return new ResultPage<>(responseCourse,page,size,courses.getTotalPages());

@@ -1,9 +1,7 @@
 package org.example.the_system_of_student_information.entity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDate;
@@ -14,25 +12,25 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "students" )
+@ToString(exclude = "course")
+@EqualsAndHashCode(exclude = "course")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Boolean scholarshipStatus;
+    Integer id;
+    Boolean scholarshipStatus;
 
     @CreationTimestamp
-    private LocalDate createdAt;
+    LocalDate createdAt;
 
     @UpdateTimestamp
-    private LocalDate updatedAt;
+    LocalDate updatedAt;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private User user;
+    User user;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
-    private Course course;
-
-
-
+    Course course;
 }

@@ -29,7 +29,7 @@ public class CourseController {
         this.courseService.updateCourse(id, courseRequest);
     }
 
-    @PostMapping("/{course-id}/teachers/{teacher-id}")
+     @PostMapping("/{course-id}/teachers/{teacher-id}")
     public void addTeacher(@PathVariable("course-id") Integer courseId,
                            @PathVariable("teacher-id") Integer teacherId ) {
         this.courseService.addTeacherById(courseId, teacherId);
