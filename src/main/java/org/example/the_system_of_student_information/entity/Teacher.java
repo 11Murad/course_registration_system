@@ -19,10 +19,12 @@ public class Teacher {
     private Integer id;
     private BigDecimal salary;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "teachers")
     private Set<Course> courses = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
 }

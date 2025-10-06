@@ -17,8 +17,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "user_number", unique = true)
     private Integer userNumber;
+
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
 }

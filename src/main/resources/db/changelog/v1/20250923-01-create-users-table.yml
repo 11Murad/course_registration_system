@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250923-01
+      author: ashrafov
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: last_name
+                  type: varchar(255)
+              - column:
+                  name: user_number
+                  type: bigint
+              - column:
+                  name: password
+                  type: varchar(255)
+              - column:
+                  name: status
+                  type: VARCHAR(50)
